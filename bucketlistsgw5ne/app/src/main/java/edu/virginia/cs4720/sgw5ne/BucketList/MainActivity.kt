@@ -31,15 +31,16 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
+/*
 class ListActivityViewModel : ViewModel() {
     // Launch screen vm
+
 }
 
 @Composable
 fun ListActivityScreen(vm: ListActivityViewModel = viewModel()) {
 
-}
+} */
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
