@@ -1,7 +1,8 @@
-package edu.virginia.cs4720.sgw5ne.bucketlist
+package edu.virginia.cs4720.sgw5ne.bucketlist.data
 
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import kotlin.collections.plus
+import androidx.compose.runtime.setValue
 
 object BucketRepository {
      var items by mutableStateOf(listOf<BucketItem>())

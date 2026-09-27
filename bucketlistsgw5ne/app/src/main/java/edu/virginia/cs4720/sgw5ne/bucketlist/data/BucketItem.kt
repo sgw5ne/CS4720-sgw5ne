@@ -1,4 +1,4 @@
-package edu.virginia.cs4720.sgw5ne.bucketlist
+package edu.virginia.cs4720.sgw5ne.bucketlist.data
 
 import java.time.LocalDate
 import java.util.UUID
@@ -8,5 +8,5 @@ data class BucketItem(
     val name: String,
     val dueDate: LocalDate,
     val completed: Boolean = false,
-    val completedDate: LocalDate?= null
+    val completedDate: LocalDate ?= null
 )
