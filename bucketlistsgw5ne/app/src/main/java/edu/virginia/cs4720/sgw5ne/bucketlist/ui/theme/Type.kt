@@ -1,4 +1,4 @@
-package edu.virginia.cs4720.sgw5ne.BucketList.ui.theme
+package edu.virginia.cs4720.sgw5ne.bucketlist.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

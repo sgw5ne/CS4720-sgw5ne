@@ -1,6 +1,5 @@
-package edu.virginia.cs4720.sgw5ne.BucketList.ui.theme
+package edu.virginia.cs4720.sgw5ne.bucketlist.ui.theme
 
-import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

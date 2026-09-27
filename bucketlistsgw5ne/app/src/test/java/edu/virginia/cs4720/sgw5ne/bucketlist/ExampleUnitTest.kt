@@ -1,4 +1,4 @@
-package edu.virginia.cs4720.sgw5ne.BucketList
+package edu.virginia.cs4720.sgw5ne.bucketlist
 
 import org.junit.Test
 

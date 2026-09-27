@@ -1,4 +1,4 @@
-package edu.virginia.cs4720.sgw5ne.BucketList
+package edu.virginia.cs4720.sgw5ne.bucketlist
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,7 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import edu.virginia.cs4720.sgw5ne.BucketList.data.BucketItem
+import edu.virginia.cs4720.sgw5ne.bucketlist.data.BucketItem
 import java.time.LocalDate
 import kotlin.comparisons.compareBy
 

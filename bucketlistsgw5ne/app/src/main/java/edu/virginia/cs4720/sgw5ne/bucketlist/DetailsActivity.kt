@@ -1,4 +1,4 @@
-package edu.virginia.cs4720.sgw5ne.BucketList
+package edu.virginia.cs4720.sgw5ne.bucketlist
 
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge

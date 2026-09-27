@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "edu.virginia.cs4720.sgw5ne.BucketList"
+    namespace = "edu.virginia.cs4720.sgw5ne.bucketlist"
     compileSdk {
         version = release(37)
     }

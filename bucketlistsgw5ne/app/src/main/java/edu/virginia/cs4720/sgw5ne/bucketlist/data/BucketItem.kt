@@ -1,4 +1,4 @@
-package edu.virginia.cs4720.sgw5ne.BucketList.data
+package edu.virginia.cs4720.sgw5ne.bucketlist.data
 
 import java.time.LocalDate
 import java.util.UUID
