@@ -20,10 +20,7 @@ class MainActivity : ComponentActivity() {
         setContent {
             BucketListTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
+                    ListScreen()
                 }
             }
         }
