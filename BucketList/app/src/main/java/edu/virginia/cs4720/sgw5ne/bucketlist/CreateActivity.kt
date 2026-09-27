@@ -16,32 +16,8 @@ import edu.virginia.cs4720.sgw5ne.bucketlist.ui.theme.BucketListTheme
 class CreateActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContent {
-            BucketListTheme {
-                Scaffold( modifier = Modifier.fillMaxSize() ) { innerPadding ->
-                    Greeting2(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun Greeting2(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview2() {
-    BucketListTheme {
-        Greeting2("Android")
+        setContent { YourTheme {
+            CreateScreen(onDone = { finish() })
+        } }
     }
 }
