@@ -17,6 +17,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import edu.virginia.cs4720.sgw5ne.BucketList.data.BucketItem
 import java.time.LocalDate
+import kotlin.comparisons.compareBy
 
 
 @Composable
@@ -26,15 +27,18 @@ fun ListScreen(
     onEdit: (BucketItem) -> Unit,
     onAdd: () -> Unit
 ) {
-    Column(Modifier.padding(24.dp)) {
-        LazyColumn{
-            items(items, key = {it.id}) {item ->
-                BucketRow(
-                    item = item,
-                    onToggle = { onToggle(item) },
-                    onEdit = { onEdit(item) }
-                )
-            }
+    val sorted = vm.items().sortedWith(
+        compareBy({ it.completed }, { it.dueDate })
+    )
+    LazyColumn {
+        items(sorted) { item ->
+            BucketRow(
+                name = item.name,
+                dueDate = item.dueDate,
+                done = item.completed,
+                onToggle = { vm.toggle(item.id) },
+                onEdit = { /* intent to DetailActivity with item.id */ }
+            )
         }
     }
 }

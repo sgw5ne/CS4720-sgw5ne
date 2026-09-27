@@ -6,18 +6,12 @@ import edu.virginia.cs4720.sgw5ne.BucketList.data.BucketRepository
 import java.time.LocalDate
 
 class ListViewModel : ViewModel() {
-    val items: List<BucketItem>
-        get() = BucketRepository.items.sortedWith(
-            compareBy({it.completed}, {it.dueDate})
-        )
-
-    fun toggle(item: BucketItem) {
-        val nowCompleted: !item.completed
+    fun items() = BucketRepository.items
+    fun toggle(id: String) {
+        val item = BucketRepository.items.first { it.id == id }
         BucketRepository.update(
-            item.copy(
-                completed = nowCompleted,
-                completedDate = if (nowCompleted) LocalDate.now() else null
-            )
+            if (item.completed) item.copy(completed = false, completedDate = null)
+            else item.copy(completed = true, completedDate = LocalDate.now())
         )
     }
 }

@@ -6,20 +6,12 @@ import androidx.compose.runtime.setValue
 import java.time.LocalDate
 
 object BucketRepository {
-     var items by mutableStateOf(
-         listOf(
-             BucketItem(name = "Eat at Bodo's at 6 AM", dueDate = LocalDate.now().plusDays(7))
-         )
-     )
+     var items by mutableStateOf(listOf<BucketItem>())
             private set
 
-    fun get(id: String): BucketItem? = items.find {it.id == id}
+    fun add(item: BucketItem) { items = items + item }
 
-    fun add(item: BucketItem) {
-        items = items + item
-    }
-
-    fun update(item: BucketItem) {
-        items = items.map { if (it.id == item.id) item else it }
+    fun update(updated: BucketItem) {
+        items = items.map { if (it.id == updated.id) updated else it }
     }
 }
