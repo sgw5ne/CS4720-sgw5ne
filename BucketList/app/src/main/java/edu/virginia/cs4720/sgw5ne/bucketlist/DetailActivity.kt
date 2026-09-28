@@ -16,32 +16,12 @@ import edu.virginia.cs4720.sgw5ne.bucketlist.ui.theme.BucketListTheme
 class DetailActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val id = intent.getStringExtra("ITEM_ID") ?: ""
         enableEdgeToEdge()
         setContent {
             BucketListTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting3(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                DetailScreen(id = id, onDone = { finish() })
             }
         }
-    }
-}
-
-@Composable
-fun Greeting3(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview3() {
-    BucketListTheme {
-        Greeting3("Android")
     }
 }
