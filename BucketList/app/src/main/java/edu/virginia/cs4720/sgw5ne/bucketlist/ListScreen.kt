@@ -36,7 +36,6 @@ fun ListScreen(vm: ListViewModel = viewModel()) {
     )
 
     Scaffold(
-        topBar = { TopAppBar(title = { Text("UVA Bucket List") }) },
         floatingActionButton = {
             ExtendedFloatingActionButton(onClick = {
                 val intent = Intent(context, CreateActivity::class.java)

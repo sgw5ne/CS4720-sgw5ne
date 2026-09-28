@@ -20,7 +20,7 @@ class CreateViewModel : ViewModel() {
     fun openDatePicker() { showDatePicker = true }
     fun closeDatePicker() { showDatePicker = false }
     fun onDueDatePicked(date: LocalDate) {
-        dueDate = dueDate
+        dueDate = date
         showDatePicker = false
     }
 
