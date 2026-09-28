@@ -19,9 +19,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BucketListTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    ListScreen()
-                }
+                ListScreen()
             }
         }
     }
