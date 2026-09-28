@@ -38,7 +38,7 @@ fun DetailScreen(id: String, onDone: () -> Unit, vm: DetailViewModel = viewModel
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(onClick = { vm.openDatePicker() }) {
-            Text("Due $vm.dueDate")
+            Text("Due ${vm.dueDate.pretty()}")
         }
         Spacer(modifier = Modifier.height(16.dp))
 
