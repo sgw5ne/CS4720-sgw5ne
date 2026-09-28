@@ -14,5 +14,14 @@ class CreateViewModel : ViewModel() {
     var showDatePicker by mutableStateOf(false)
         private set
 
+    fun canSave() = name.isNotBlank() && dueDate != null
+
+    fun onNameChange(new: String) { name = new }
+    fun openDatePicker() { showDatePicker = true }
+    fun closeDatePicker() { showDatePicker = false }
+    fun onDueDatePicked() {
+        dueDate = dueDate
+        showDatePicker = false
+    }
 
 }

@@ -16,7 +16,7 @@ import edu.virginia.cs4720.sgw5ne.bucketlist.ui.theme.BucketListTheme
 class CreateActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { YourTheme {
+        setContent { BucketListTheme {
             CreateScreen(onDone = { finish() })
         } }
     }
