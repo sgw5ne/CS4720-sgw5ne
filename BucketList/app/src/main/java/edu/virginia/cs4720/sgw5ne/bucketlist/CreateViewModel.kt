@@ -19,9 +19,14 @@ class CreateViewModel : ViewModel() {
     fun onNameChange(new: String) { name = new }
     fun openDatePicker() { showDatePicker = true }
     fun closeDatePicker() { showDatePicker = false }
-    fun onDueDatePicked() {
+    fun onDueDatePicked(date: LocalDate) {
         dueDate = dueDate
         showDatePicker = false
     }
 
+    fun save() {
+        val date = dueDate ?: return
+        if (name.isBlank()) return
+        BucketRepository.add(BucketItem(name = name, dueDate = date))
+    }
 }
