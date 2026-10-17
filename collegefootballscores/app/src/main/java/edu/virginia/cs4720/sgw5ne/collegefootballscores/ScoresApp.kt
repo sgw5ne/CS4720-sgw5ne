@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import edu.virginia.cs4720.sgw5ne.collegefootballscores.ui.theme.CollegefootballscoresTheme
 
-class MainActivity : ComponentActivity() {
+class ScoresApp : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
