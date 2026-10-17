@@ -7,3 +7,8 @@ old folder is still there just for the sake of commit history.
 
 Homework 1 AI Usage: AI was primarily used to help with implementation of Date Picker, but also to help implementing Activities and certain screen formatting. All AI generated code was again hand reviewed as it was written
 into the codebase, with testing by running code and ensuring all necessary functions were being fulfilled.
+
+# Homework 2
+Homework 2 should be located in the folder labeled "collegefootballscores".
+
+Homework 2 AI Usage: AI was primarily used to help with the implementation of the database and to help with some syntax issues that came up while I was building this app. All AI generated code was again hand reviewed as it was written in, with testing done by running code and ensuring all necessary functions were being fulfilled.
