@@ -7,5 +7,5 @@ import androidx.room.PrimaryKey
 data class DaySteps(
     @PrimaryKey val date: String,
     val steps: Int = 0,
-    val counterBaseline: Long? = null
+    val lastCounter: Long? = null
 )

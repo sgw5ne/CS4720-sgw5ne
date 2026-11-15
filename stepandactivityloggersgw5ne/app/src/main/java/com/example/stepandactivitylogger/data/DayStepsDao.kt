@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DayStepsDao {
     @Query("SELECT * FROM daily_steps ORDER BY date DESC")
-    fun overserveAll(): Flow<List<DaySteps>>
+    fun observeAll(): Flow<List<DaySteps>>
 
     @Query("SELECT * FROM daily_steps WHERE date = :date")
     fun observeDay(date: String): Flow<DaySteps?>
