@@ -12,13 +12,13 @@ abstract class AppDb : RoomDatabase() {
     companion object {
         @Volatile private var INSTANCE: AppDb? = null
 
-        fun get(context: Context): AppDb =
-            INSTANCE ?: synchronized(this) {
-                INSTANCE ?: Room.databaseBuilder(
-                    context.applicationContext,
-                    AppDb::class.java,
-                    "steplogger.db"
-                ).build().also { INSTANCE = it }
+        fun get(context: Context): AppDb {
+            if (INSTANCE == null) {
+                INSTANCE = Room.databaseBuilder(
+                    context.applicationContext, AppDb::class.java, "steplogger.db"
+                ).build()
             }
+            return INSTANCE!!
+        }
     }
 }
