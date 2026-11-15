@@ -11,12 +11,22 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.example.stepandactivitylogger.data.AppDb
+import com.example.stepandactivitylogger.data.StepRepository
 import com.example.stepandactivitylogger.ui.theme.StepandactivityloggerTheme
 
 class MainActivity : ComponentActivity() {
+
+    private lateinit var repository : StepRepository
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+
+        val db = AppDb.get(applicationContext)
+        val dao = db.dayStepsDao()
+        repository = StepRepository(dao)
+
         setContent {
             StepandactivityloggerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
