@@ -27,6 +27,16 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.Settings
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
+import androidx.compose.material.icons.filled.Home
+import androidx.compose.material3.Icon
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarItem
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.currentBackStackEntryAsState
+import androidx.navigation.compose.rememberNavController
 
 class MainActivity : ComponentActivity() {
 
@@ -62,13 +72,46 @@ class MainActivity : ComponentActivity() {
         )
         setContent {
             val state by vm.uiState.collectAsStateWithLifecycle()
-            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                LiveScreen(
-                    state = state,
-                    onRequestPermission = { requestActivityRecognition() },
-                    onOpenSettings = { openAppSettings() },
+            val nav = rememberNavController()
+            val backStackEntry by nav.currentBackStackEntryAsState()
+            val currentRoute = backStackEntry?.destination?.route
+            Scaffold(
+                modifier = Modifier.fillMaxSize(),
+                bottomBar = {
+                    NavigationBar {
+                        NavigationBarItem(
+                            selected = currentRoute == Routes.LIVE,
+                            onClick = { nav.popBackStack(Routes.LIVE, inclusive = false) },
+                            icon = { Icon(Icons.Filled.Home, contentDescription = null) },
+                            label = { Text("Live") }
+                        )
+                        NavigationBarItem(
+                            selected = currentRoute == Routes.HISTORY,
+                            onClick = { nav.navigate(Routes.HISTORY) { launchSingleTop = true } },
+                            icon = { Icon(Icons.Filled.DateRange, contentDescription = null) },
+                            label = { Text("History") }
+                        )
+                    }
+                }
+            ) { innerPadding ->
+                NavHost(
+                    navController = nav,
+                    startDestination = Routes.LIVE,
                     modifier = Modifier.padding(innerPadding)
-                )
+                ) {
+                    composable(Routes.LIVE) {
+                        LiveScreen(
+                            state = state,
+                            onRequestPermission = { requestActivityRecognition() },
+                            onOpenSettings = { openAppSettings() }
+                        )
+                    }
+                    composable(Routes.HISTORY) {
+                        val history by vm.history.collectAsStateWithLifecycle()
+                        HistoryScreen(days = mergeToday(history, state))
+                    }
+                }
+
             }
         }
     }
@@ -108,4 +151,9 @@ class MainActivity : ComponentActivity() {
         Build.VERSION.SDK_INT < Build.VERSION_CODES.Q ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION) ==
                     PackageManager.PERMISSION_GRANTED
+}
+
+object Routes {
+    const val LIVE = "live"
+    const val HISTORY = "history"
 }
