@@ -9,5 +9,7 @@ data class StepUiState(
     val smoothed : Float = 0f,
     val todaySteps: Int = 0,
     val mode: StepMode = StepMode.UNAVAILABLE,
-    val hasStepCounter: Boolean = false
+    val hasStepCounter: Boolean = false,
+    val permissionPermanentlyDenied: Boolean = false
+    val todayDate: String = ""
 )

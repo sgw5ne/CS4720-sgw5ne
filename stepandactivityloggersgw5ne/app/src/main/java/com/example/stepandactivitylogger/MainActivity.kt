@@ -22,13 +22,27 @@ import com.example.stepandactivitylogger.data.AppDb
 import com.example.stepandactivitylogger.data.StepRepository
 import com.example.stepandactivitylogger.sensors.StepSensorManager
 import com.example.stepandactivitylogger.ui.theme.StepandactivityloggerTheme
-import java.util.jar.Manifest
+import android.Manifest
+import android.content.Intent
+import android.net.Uri
+import android.provider.Settings
+import androidx.activity.result.contract.ActivityResultContracts
 
 class MainActivity : ComponentActivity() {
 
     private lateinit var repository : StepRepository
     private lateinit var vm: StepViewModel
     private lateinit var sensors: StepSensorManager
+
+    private val permissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { granted ->
+            val permanentlyDenied = !granted &&
+                    Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q &&
+                    !shouldShowRequestPermissionRationale(Manifest.permission.ACTIVITY_RECOGNITION)
+
+            vm.onPermissionResult(granted, permanentlyDenied)
+            startSensors()
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,29 +53,34 @@ class MainActivity : ComponentActivity() {
 
         val db = AppDb.get(applicationContext)
         val dao = db.dayStepsDao()
-        repository = StepRepository(dao)
 
         sensors = StepSensorManager(
             context = applicationContext,
-            onAccelerometer = { x, y, xz, smoothed -> vm.onAccelerometer(x, y, z, smoothed) },
+            onAccelerometer = { x, y, z, smoothed -> vm.onAccelerometer(x, y, z, smoothed) },
             onStepDetected = { vm.onStepDetected() },
             onCounterReading = { total -> vm.onCounterReading(total) }
         )
         setContent {
-            StepandactivityloggerTheme {
-                val state by vm.uiState.collectAsStateWithLifecycle()
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    LiveScreen(state = state, modifier = Modifier.padding(innerPadding))
-                }
+            val state by vm.uiState.collectAsStateWithLifecycle()
+            Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+                LiveScreen(
+                    state = state,
+                    onRequestPermission = { requestActivityRecognition() },
+                    onOpenSettings = { openAppSettings() },
+                    modifier = Modifier.padding(innerPadding)
+                )
             }
         }
     }
 
     override fun onResume() {
         super.onResume()
+        startSensors()
+    }
+
+    private fun startSensors() {
         val mode = sensors.start(stepTrackingAllowed = hasActivityRecognitionPermission())
         vm.onModeChanged(mode, sensors.hasStepCounter)
-        Log.d("StepLogger", "onResume: listeners registered, mode=$mode")
     }
 
     override fun onPause() {
@@ -71,24 +90,22 @@ class MainActivity : ComponentActivity() {
         Log.d("StepLogger", "onPause: listeners unregistered, today saved")
     }
 
+    private fun requestActivityRecognition() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            permissionLauncher.launch(Manifest.permission.ACTIVITY_RECOGNITION)
+        }
+    }
+
+    private fun openAppSettings() {
+        val intent = Intent(
+            Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+            Uri.fromParts("package", packageName, null)
+        )
+        startActivity(intent)
+    }
+
     private fun hasActivityRecognitionPermission(): Boolean =
         Build.VERSION.SDK_INT < Build.VERSION_CODES.Q ||
                 ContextCompat.checkSelfPermission(this, Manifest.permission.ACTIVITY_RECOGNITION) ==
                     PackageManager.PERMISSION_GRANTED
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    StepandactivityloggerTheme {
-        Greeting("Android")
-    }
 }

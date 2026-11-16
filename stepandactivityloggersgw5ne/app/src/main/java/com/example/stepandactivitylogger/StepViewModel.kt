@@ -40,6 +40,12 @@ class StepViewModel(private val repository: StepRepository) : ViewModel() {
         _uiState.value = _uiState.value.copy(mode = mode, hasStepCounter = hasStepCounter)
     }
 
+    fun onPermissionResult(granted: Boolean, permanentlyDenied: Boolean) {
+        _uiState.value = _uiState.value.copy(
+            permissionPermanentlyDenied = !granted && permanentlyDenied
+        )
+    }
+
     fun onAccelerometer(x: Float, y: Float, z: Float, smoothed: Float) {
         _uiState.value = _uiState.value.copy(x = x, y = y, z = z, smoothed = smoothed)
     }
@@ -71,7 +77,7 @@ class StepViewModel(private val repository: StepRepository) : ViewModel() {
     }
 
     private fun publishToday() {
-        _uiState.value = _uiState.value.copy(todaySteps = today?.steps ?: 0)
+        _uiState.value = _uiState.value.copy(todaySteps = today?.steps ?: 0, todayDate = today?.date ?: repository.todayKey())
     }
 
     private fun rolloverIfNeeded() {

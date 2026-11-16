@@ -32,6 +32,7 @@ class StepSensorManager(
         private set
 
     fun start(stepTrackingAllowed: Boolean): StepMode {
+        sm?.unregisterListener(this)
         detector.reset()
 
         mode = when {

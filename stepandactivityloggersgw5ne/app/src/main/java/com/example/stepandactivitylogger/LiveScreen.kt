@@ -7,7 +7,9 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,7 +18,12 @@ import androidx.compose.ui.unit.dp
 import com.example.stepandactivitylogger.sensors.StepMode
 
 @Composable
-fun LiveScreen(state: StepUiState, modifier: Modifier = Modifier) {
+fun LiveScreen(
+    state: StepUiState,
+    onRequestPermission: () -> Unit,
+    onOpenSettings: () -> Unit,
+    modifier: Modifier = Modifier
+    ) {
     Column(
         modifier = modifier.padding(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
@@ -40,9 +47,19 @@ fun LiveScreen(state: StepUiState, modifier: Modifier = Modifier) {
                 when (state.mode) {
                     StepMode.HARDWARE, StepMode.ACCELEROMETER -> {
                         Text("${state.todaySteps}")
+                        Text(modeDescription(state.mode))
                     }
-                    StepMode.NOT_ALLOWED, StepMode.UNAVAILABLE -> {
+                    StepMode.NOT_ALLOWED -> {
+                        PermissionPanel(
+                            permanentlyDenied = state.permissionPermanentlyDenied,
+                            onRequestPermission = onRequestPermission,
+                            onOpenSettings = onOpenSettings
+                        )
+                    }
+
+                    StepMode.UNAVAILABLE -> {
                         Text("-")
+                        Text(modeDescription(state.mode))
                     }
                 }
                 Text(modeDescription(state.mode))
@@ -66,11 +83,40 @@ private fun AxisRow(label: String, value: Float) {
     }
 }
 
+@Composable
+private fun PermissionPanel(
+    permanentlyDenied: Boolean,
+    onRequestPermission: () -> Unit,
+    onOpenSettings: () -> Unit
+) {
+    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+        Text(
+            "This app needs access to your physical activity to count your steps, " +
+            "and your step count will never leave this phone"
+        )
+        if(!permanentlyDenied) {
+            Button(onClick = onRequestPermission) {
+                Text("Allow step counting")
+            }
+        } else {
+            Text (
+                "Step counting is off. To turn it on later, open Settings -> Apps -> " +
+                        "this app -> Permissions -> Physical activity -> Allow."
+            )
+            OutlinedButton(onClick = onOpenSettings) {
+                Text("Open Settings")
+            }
+        }
+    }
+}
+
 @Preview(showBackground = true)
 @Composable
 private fun LiveScreenPreview() {
     LiveScreen(
-        StepUiState(x = 0.12f, y = 9.71f, z = 0.43f, smoothed = 9.80f,
-            todaySteps = 1234, mode = StepMode.ACCELEROMETER)
+        state = StepUiState(x = 0.12f, y = 9.71f, z = 0.43f, smoothed = 9.80f,
+            mode = StepMode.NOT_ALLOWED),
+        onRequestPermission = {},
+        onOpenSettings = {}
     )
 }
