@@ -10,6 +10,6 @@ data class StepUiState(
     val todaySteps: Int = 0,
     val mode: StepMode = StepMode.UNAVAILABLE,
     val hasStepCounter: Boolean = false,
-    val permissionPermanentlyDenied: Boolean = false
+    val permissionPermanentlyDenied: Boolean = false,
     val todayDate: String = ""
 )
