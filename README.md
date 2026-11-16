@@ -35,4 +35,4 @@ from the accelerometer anyway. Right now the history sticks around until the app
 auto-deletion after a few months and a button to clear everything. For consent, the app only asks when you
 actually go to use step counting, explains why in one sentence, and still works fine if you say no.
 
-## Homework 3 AI Usage: AI was primarily used with implementing the database and helping with debugging code as well as figuring out the workflow necessary for the app. All AI generated code was hand reviewed as it was written in, with written test cases made for this homework to ensure functionality.
+Homework 3 AI Usage: AI was primarily used with implementing the database and helping with debugging code as well as figuring out the workflow necessary for the app. All AI generated code was hand reviewed as it was written in, with written test cases made for this homework to ensure functionality.
