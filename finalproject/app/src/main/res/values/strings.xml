@@ -6,9 +6,24 @@
     <!-- Shared actions -->
     <string name="action_log_in">Log In</string>
     <string name="action_sign_up">Sign Up</string>
+    <string name="action_back">Back</string>
+
+    <!-- Form fields -->
+    <string name="field_email_or_username">Email or username</string>
+    <string name="field_password">Password</string>
+    <string name="field_username">Username</string>
+    <string name="field_email">Email</string>
+    <string name="field_confirm_password">Confirm password</string>
 
     <!-- Log In Menu -->
     <string name="login_menu_welcome">Welcome</string>
     <string name="login_menu_tagline">Plan events with your groups</string>
     <string name="login_menu_hero_description">App logo</string>
+
+    <!-- Log In -->
+    <string name="login_forgot_password">Forgot password?</string>
+    <string name="login_no_account">Don\'t have an account?</string>
+
+    <!-- Sign Up -->
+    <string name="signup_have_account">Already have an account?</string>
 </resources>
