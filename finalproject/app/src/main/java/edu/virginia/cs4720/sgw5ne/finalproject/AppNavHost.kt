@@ -96,7 +96,24 @@ fun AppNavHost(
             )
         }
 
-        // TODO: composable(Routes.GROUPS), SEARCH as those screens are built.
+        composable(Routes.GROUPS) {
+            GroupsScreen(
+                groups = emptyList(), // TODO: load the user's groups from Firestore
+                onGroupClick = { /* TODO: open group */ },
+                onMembersClick = { /* TODO: show member list */ },
+                onNewGroupClick = { /* TODO: create group */ }
+            )
+        }
+
+        composable(Routes.SEARCH) {
+            SearchScreen(
+                groups = emptyList(), // TODO: public groups matching the query, from Firestore
+                events = emptyList(), // TODO: upcoming events matching the query, from Firestore
+                onQueryChange = { /* TODO: pass to a ViewModel that queries Firestore */ },
+                onGroupClick = { /* TODO: open group / join */ },
+                onEventClick = { /* TODO: navigate to Event Details */ }
+            )
+        }
     }
 }
 

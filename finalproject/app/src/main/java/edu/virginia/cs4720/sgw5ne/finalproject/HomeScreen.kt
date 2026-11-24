@@ -84,9 +84,9 @@ fun HomeScreen(
     }
 }
 
-/** One event in the list. The whole card is the touch target. */
+/** One event in a list (used by Home and Search). The whole card is the touch target. */
 @Composable
-private fun EventCard(
+fun EventCard(
     event: Event,
     onClick: () -> Unit,
     modifier: Modifier = Modifier

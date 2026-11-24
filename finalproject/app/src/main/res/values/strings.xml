@@ -53,6 +53,30 @@
     <!-- Messages -->
     <string name="messages_empty_title">No messages yet</string>
     <string name="messages_empty_body">Chats with your groups will show up here.</string>
+
+    <!-- Groups -->
+    <string name="groups_new_group">New group</string>
+    <string name="groups_members">Members</string>
+    <string name="groups_public">Public group</string>
+    <string name="groups_private">Private group</string>
+    <string name="groups_count_and_visibility">%1$s · %2$s</string>
+    <string name="groups_empty_title">No groups yet</string>
+    <string name="groups_empty_body">Create a group or find one in Search.</string>
+
+    <!-- Search -->
+    <string name="search_hint">Search groups and events</string>
+    <string name="search_filter_all">All</string>
+    <string name="search_filter_events">Events</string>
+    <string name="search_groups_to_discover">Groups to discover</string>
+    <string name="search_upcoming_events">Upcoming events</string>
+    <string name="search_empty_title">Find something to join</string>
+    <string name="search_empty_body">Public groups and their events will show up here.</string>
+    <string name="search_no_results_title">No results</string>
+    <string name="search_no_results_body">Try a different name or filter.</string>
+    <plurals name="groups_member_count">
+        <item quantity="one">%d member</item>
+        <item quantity="other">%d members</item>
+    </plurals>
     <plurals name="messages_unread_description">
         <item quantity="one">%d unread message</item>
         <item quantity="other">%d unread messages</item>
