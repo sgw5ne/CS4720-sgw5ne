@@ -26,4 +26,35 @@
 
     <!-- Sign Up -->
     <string name="signup_have_account">Already have an account?</string>
+
+    <!-- Bottom bar -->
+    <string name="tab_home">Home</string>
+    <string name="tab_messages">Messages</string>
+    <string name="tab_groups">Groups</string>
+    <string name="tab_search">Search</string>
+    <string name="tab_profile">Profile</string>
+
+    <!-- Home -->
+    <string name="home_title">Upcoming Events</string>
+    <string name="home_event_group_at_location">%1$s @ %2$s</string>
+    <string name="home_pending_approvals">Pending approvals</string>
+    <string name="home_empty_title">No upcoming events</string>
+    <string name="home_empty_body">Events from your groups will show up here.</string>
+
+    <!-- Profile -->
+    <string name="profile_handle">\@%1$s</string>
+    <string name="profile_settings">Settings</string>
+    <string name="profile_my_schedule">My schedule</string>
+    <string name="profile_time_range">%1$s – %2$s</string>
+    <string name="profile_pending_approval">Pending approval</string>
+    <string name="profile_empty_title">Nothing scheduled</string>
+    <string name="profile_empty_body">Events you join will show up here.</string>
+
+    <!-- Messages -->
+    <string name="messages_empty_title">No messages yet</string>
+    <string name="messages_empty_body">Chats with your groups will show up here.</string>
+    <plurals name="messages_unread_description">
+        <item quantity="one">%d unread message</item>
+        <item quantity="other">%d unread messages</item>
+    </plurals>
 </resources>
